@@ -1,163 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>To My Love, Elsa</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      background: linear-gradient(135deg, #fddde6, #ffe9c7);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      min-height: 100vh;
-    }
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin: 0.5em 0 0.2em;
-    }
-    h1 span {
-      color: #d88bb0;
-      font-style: italic;
-    }
-    p {
-      font-size: 1.2rem;
-      margin: 0 0 1.5em;
-    }
-    .countdown {
-      display: flex;
-      gap: 1em;
-      margin-bottom: 2em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .time-box {
-      background: #fff;
-      border-radius: 10px;
-      padding: 1em 1.2em;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .time-box h2 {
-      margin: 0;
-      font-size: 1.8rem;
-      color: #d88bb0;
-    }
-    .time-box span {
-      display: block;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1em;
-      padding: 2em;
-      width: 100%;
-      max-width: 1000px;
-      box-sizing: border-box;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    .background-flowers {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 200px;
-      background: url('https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=1500&q=80') bottom center no-repeat;
-      background-size: cover;
-      opacity: 0.2;
-      pointer-events: none;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>To My Love, Elsa</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    scroll-behavior: smooth;
+  }
+  /* Fullscreen Countdown Section */
+  .hero {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(135deg, #fddde6, #ffe9c7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+  .hero h1 span {
+    color: #d88bb0;
+    font-style: italic;
+  }
+  .hero p {
+    font-size: 1.3rem;
+    margin: 0.5em 0 1em;
+    opacity: 0;
+    animation: fadeIn 2s 0.5s forwards;
+  }
+  .countdown {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 2s 1s forwards;
+  }
+  .time-box {
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 1em 1.2em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(20px);
+    animation: slideUp 1s forwards;
+  }
+  .time-box h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #d88bb0;
+  }
+  .time-box span {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  .scroll-indicator {
+    margin-top: 2em;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    color: #d88bb0;
+    cursor: pointer;
+  }
+  @keyframes fadeIn {
+    to {opacity: 1;}
+  }
+  @keyframes slideUp {
+    to {transform: translateY(0);}
+  }
+  @keyframes bounce {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+  }
+
+  /* Gallery Section */
+  .gallery-section {
+    background: #fff;
+    padding: 2em;
+    text-align: center;
+  }
+  .gallery-section h2 {
+    margin-bottom: 1em;
+    color: #d88bb0;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
-  <h1>To My Love, <span>Elsa</span></h1>
-  <p>Counting down to our anniversary</p>
-
-  <div class="countdown">
-    <div class="time-box">
-      <h2 id="days">0</h2>
-      <span>Days</span>
+  <!-- Hero Countdown Section -->
+  <section class="hero">
+    <h1>To My Love, <span>Elsa</span></h1>
+    <p>Counting down to our anniversary</p>
+    <div class="countdown">
+      <div class="time-box">
+        <h2 id="days">0</h2>
+        <span>Days</span>
+      </div>
+      <div class="time-box">
+        <h2 id="hours">0</h2>
+        <span>Hours</span>
+      </div>
+      <div class="time-box">
+        <h2 id="minutes">0</h2>
+        <span>Minutes</span>
+      </div>
+      <div class="time-box">
+        <h2 id="seconds">0</h2>
+        <span>Seconds</span>
+      </div>
     </div>
-    <div class="time-box">
-      <h2 id="hours">0</h2>
-      <span>Hours</span>
+    <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'});">⬇️</div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery-section">
+    <h2>Our Memories</h2>
+    <div class="gallery">
+      <img src="https://dl.dropboxusercontent.com/scl/fi/pyvtvc39f2dbg9yyyabm1/Photo-03-07-2025-17-08-26.jpg" alt="Memory 1">
+      <img src="https://dl.dropboxusercontent.com/scl/fi/pbfi2wrw3vwkslmkhl4ab/Photo-08-06-2025-22-17-08.jpg" alt="Memory 2">
+      <img src="https://dl.dropboxusercontent.com/scl/fi/9nvhdifv6qpfmy3a92sfm/Photo-12-07-2025-10-11-22.jpg" alt="Memory 3">
+      <img src="https://dl.dropboxusercontent.com/scl/fi/8uhlcf7ss0kijpcg67y95/Photo-12-07-2025-10-16-01-2.jpg" alt="Memory 4">
+      <img src="https://dl.dropboxusercontent.com/scl/fi/x0vuvclqsgkht81e0vmi7/Photo-12-07-2025-10-16-01.jpg" alt="Memory 5">
+      <img src="https://dl.dropboxusercontent.com/scl/fi/9nvhdifv6qpfmy3a92sfm/Photo-12-07-2025-10-11-22.jpg" alt="Memory 6">
     </div>
-    <div class="time-box">
-      <h2 id="minutes">0</h2>
-      <span>Minutes</span>
-    </div>
-    <div class="time-box">
-      <h2 id="seconds">0</h2>
-      <span>Seconds</span>
-    </div>
-  </div>
+  </section>
 
-  <div class="gallery">
-    <img src="https://www.dropbox.com/scl/fi/pyvtvc39f2dbg9yyyabm1/Photo-03-07-2025-17-08-26.jpg?rlkey=2uxzu4lrsz2ncecfsqpvp989d&st=5r34nxc6&dl=0" alt="Memory 1">
-    <img src="https://www.dropbox.com/scl/fi/pbfi2wrw3vwkslmkhl4ab/Photo-08-06-2025-22-17-08.jpg?rlkey=wtjc1y3kl6qcsippwm86huaii&st=426ut1q9&dl=0" alt="Memory 2">
-    <img src="https://www.dropbox.com/scl/fi/9nvhdifv6qpfmy3a92sfm/Photo-12-07-2025-10-11-22.jpg?rlkey=iyi7mydmusov3p58g55c9gtjl&st=3xh9i0w0&dl=0" alt="Memory 3">
-    <img src="https://www.dropbox.com/scl/fi/8uhlcf7ss0kijpcg67y95/Photo-12-07-2025-10-16-01-2.jpg?rlkey=g581x82pkhy63ua6saz91t6rg&st=297nqz9w&dl=0" alt="Memory 4">
-    <img src="https://www.dropbox.com/scl/fi/x0vuvclqsgkht81e0vmi7/Photo-12-07-2025-10-16-01.jpg?rlkey=eus7oc95n5yk1kyt2p3qs186t&st=z8glmvr8&dl=0" alt="Memory 5">
-    <img src="https://www.dropbox.com/scl/fi/9nvhdifv6qpfmy3a92sfm/Photo-12-07-2025-10-11-22.jpg?rlkey=iyi7mydmusov3p58g55c9gtjl&st=mzrrsakf&dl=0" alt="Memory 6">
-  </div>
-
-  <div class="background-flowers"></div>
-
-  <script>
-    function getNext28th() {
-      const now = new Date();
-      let year = now.getFullYear();
-      let month = now.getMonth();
-
-      if (now.getDate() >= 28) {
-        month += 1;
-        if (month > 11) {
-          month = 0;
-          year += 1;
-        }
+<script>
+  function getNext28th() {
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    if (now.getDate() >= 28) {
+      month += 1;
+      if (month > 11) {
+        month = 0;
+        year += 1;
       }
-      return new Date(year, month, 28, 0, 0, 0);
+    }
+    return new Date(year, month, 28, 0, 0, 0);
+  }
+
+  let targetDate = getNext28th().getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      targetDate = getNext28th().getTime();
     }
 
-    let targetDate = getNext28th().getTime();
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+    document.getElementById("days").textContent = days >= 0 ? days : 0;
+    document.getElementById("hours").textContent = hours >= 0 ? hours : 0;
+    document.getElementById("minutes").textContent = minutes >= 0 ? minutes : 0;
+    document.getElementById("seconds").textContent = seconds >= 0 ? seconds : 0;
+  }
 
-      if (distance < 0) {
-        targetDate = getNext28th().getTime();
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").textContent = days >= 0 ? days : 0;
-      document.getElementById("hours").textContent = hours >= 0 ? hours : 0;
-      document.getElementById("minutes").textContent = minutes >= 0 ? minutes : 0;
-      document.getElementById("seconds").textContent = seconds >= 0 ? seconds : 0;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
