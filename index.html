@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To My Love, Elsa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      background: linear-gradient(135deg, #fddde6, #ffe9c7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0.5em 0 0.2em;
+    }
+    h1 span {
+      color: #d88bb0;
+      font-style: italic;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 0 0 1.5em;
+    }
+    .countdown {
+      display: flex;
+      gap: 1em;
+      margin-bottom: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .time-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1em 1.2em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .time-box h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #d88bb0;
+    }
+    .time-box span {
+      display: block;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .scroll-btn {
+      display: inline-block;
+      background: #f4b7c5;
+      color: white;
+      text-decoration: none;
+      padding: 0.8em 1.5em;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    .scroll-btn:hover {
+      background: #e391a8;
+    }
+    .background-flowers {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 200px;
+      background: url('https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=1500&q=80') bottom center no-repeat;
+      background-size: cover;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>To My Love, <span>Elsa</span></h1>
+  <p>Counting down to our anniversary</p>
+
+  <div class="countdown">
+    <div class="time-box">
+      <h2 id="days">0</h2>
+      <span>Days</span>
+    </div>
+    <div class="time-box">
+      <h2 id="hours">0</h2>
+      <span>Hours</span>
+    </div>
+    <div class="time-box">
+      <h2 id="minutes">0</h2>
+      <span>Minutes</span>
+    </div>
+    <div class="time-box">
+      <h2 id="seconds">0</h2>
+      <span>Seconds</span>
+    </div>
+  </div>
+
+  <a href="#our-story" class="scroll-btn">❤️ Scroll Down to Our Story</a>
+
+  <div class="background-flowers"></div>
+
+  <script>
+    function getNext28th() {
+      const now = new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth();
+
+      if (now.getDate() >= 28) {
+        // Move to the next month
+        month += 1;
+        if (month > 11) {
+          month = 0;
+          year += 1;
+        }
+      }
+
+      return new Date(year, month, 28, 0, 0, 0);
+    }
+
+    let targetDate = getNext28th().getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        // If passed, update target date to the next 28th
+        targetDate = getNext28th().getTime();
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days >= 0 ? days : 0;
+      document.getElementById("hours").textContent = hours >= 0 ? hours : 0;
+      document.getElementById("minutes").textContent = minutes >= 0 ? minutes : 0;
+      document.getElementById("seconds").textContent = seconds >= 0 ? seconds : 0;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
