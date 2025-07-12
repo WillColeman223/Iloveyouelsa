@@ -12,12 +12,10 @@
       color: #333;
       background: linear-gradient(135deg, #fddde6, #ffe9c7);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       flex-direction: column;
+      align-items: center;
       text-align: center;
-      overflow-x: hidden;
+      min-height: 100vh;
     }
     h1 {
       font-size: 2.8rem;
@@ -55,18 +53,25 @@
       font-size: 0.9rem;
       color: #555;
     }
-    .scroll-btn {
-      display: inline-block;
-      background: #f4b7c5;
-      color: white;
-      text-decoration: none;
-      padding: 0.8em 1.5em;
-      border-radius: 25px;
-      font-weight: 500;
-      transition: background 0.3s ease;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1em;
+      padding: 2em;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
     }
-    .scroll-btn:hover {
-      background: #e391a8;
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
     }
     .background-flowers {
       position: absolute;
@@ -103,7 +108,14 @@
     </div>
   </div>
 
-  <a href="#our-story" class="scroll-btn">❤️ Scroll Down to Our Story</a>
+  <div class="gallery">
+    <img src="https://placekitten.com/300/300" alt="Memory 1">
+    <img src="https://placekitten.com/301/300" alt="Memory 2">
+    <img src="https://placekitten.com/302/300" alt="Memory 3">
+    <img src="https://placekitten.com/303/300" alt="Memory 4">
+    <img src="https://placekitten.com/304/300" alt="Memory 5">
+    <img src="https://placekitten.com/305/300" alt="Memory 6">
+  </div>
 
   <div class="background-flowers"></div>
 
@@ -114,14 +126,12 @@
       let month = now.getMonth();
 
       if (now.getDate() >= 28) {
-        // Move to the next month
         month += 1;
         if (month > 11) {
           month = 0;
           year += 1;
         }
       }
-
       return new Date(year, month, 28, 0, 0, 0);
     }
 
@@ -132,7 +142,6 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        // If passed, update target date to the next 28th
         targetDate = getNext28th().getTime();
       }
 
