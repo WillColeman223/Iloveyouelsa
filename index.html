@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>To My Love, Elsa</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Segoe+UI&display=swap');
+
   html, body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     scroll-behavior: smooth;
+    background: #fff7f9;
   }
   /* Fullscreen Countdown Section */
   .hero {
@@ -23,9 +26,10 @@
     align-items: center;
     text-align: center;
     overflow: hidden;
+    padding: 0 1em;
   }
   .hero h1 {
-    font-size: 4.5rem; /* increased */
+    font-size: 4.5rem;
     font-weight: 700;
     opacity: 0;
     animation: fadeIn 2s forwards;
@@ -35,7 +39,7 @@
     font-style: italic;
   }
   .hero p {
-    font-size: 2rem; /* increased */
+    font-size: 2rem;
     margin: 0.5em 0 1em;
     opacity: 0;
     animation: fadeIn 2s 0.5s forwards;
@@ -52,7 +56,7 @@
   .time-box {
     background: rgba(255,255,255,0.85);
     border-radius: 10px;
-    padding: 1.5em 2em; /* bigger padding */
+    padding: 1.5em 2em;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transform: translateY(20px);
     animation: slideUp 1s forwards;
@@ -60,7 +64,7 @@
   }
   .time-box h2 {
     margin: 0;
-    font-size: 2.8rem; /* bigger numbers */
+    font-size: 2.8rem;
     color: #d88bb0;
   }
   .time-box span {
@@ -70,7 +74,7 @@
   }
   .scroll-indicator {
     margin-top: 2em;
-    font-size: 3rem; /* bigger */
+    font-size: 3rem;
     animation: bounce 2s infinite;
     color: #d88bb0;
     cursor: pointer;
@@ -89,12 +93,15 @@
   /* Gallery Section */
   .gallery-section {
     background: #fff;
-    padding: 2em;
+    padding: 2em 1em 4em;
     text-align: center;
   }
   .gallery-section h2 {
     margin-bottom: 1em;
     color: #d88bb0;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
   }
   .gallery {
     display: grid;
@@ -131,9 +138,6 @@
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(255,255,255,0.5);
   }
-  #lightbox:target {
-    display: flex;
-  }
   #lightbox-close {
     position: fixed;
     top: 20px;
@@ -145,28 +149,81 @@
     z-index: 10000;
   }
 
-  /* Letter section (hidden by default) */
-  #letter {
-    display: none;
-    padding: 3em 2em;
-    background: #fbe9f1;
-    color: #6a3d56;
+  /* Romantic message styling */
+  .love-message {
+    margin-top: 3em;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
     max-width: 700px;
-    margin: 3em auto;
-    font-size: 1.3rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #c7548f;
+    background: linear-gradient(90deg, #ffd6e8, #ffe5f0);
+    padding: 1.2em 2em;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(199, 84, 143, 0.3);
+    user-select: none;
     line-height: 1.6;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(216,139,176,0.3);
+    letter-spacing: 0.03em;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
   }
-  #letter.visible {
-    display: block;
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 1.5em 1em;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .countdown {
+      flex-direction: column;
+      gap: 0.8em;
+    }
+
+    .time-box {
+      min-width: 100%;
+      padding: 1em;
+    }
+
+    .time-box h2 {
+      font-size: 2.4rem;
+    }
+
+    .scroll-indicator {
+      font-size: 2.2rem;
+    }
+
+    .gallery {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.7em;
+      padding: 0 0.5em;
+    }
+
+    #lightbox img {
+      max-width: 95vw;
+      max-height: 80vh;
+    }
+
+    .love-message {
+      font-size: 1.4rem;
+      padding: 1em 1.2em;
+      margin-top: 2em;
+    }
   }
 </style>
 </head>
 <body>
   <!-- Hero Countdown Section -->
   <section class="hero">
-    <h1>To My Pretty Girl, <span>Elsa</span></h1>
+    <h1>To My Love, <span>Elsa</span></h1>
     <p>Counting down to our anniversary</p>
     <div class="countdown">
       <div class="time-box">
@@ -200,18 +257,8 @@
       <img src="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1" alt="Memory 5" data-full="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1">
       <img src="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1" alt="Memory 6" data-full="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1">
     </div>
-  </section>
-
-  <!-- Letter Section (hidden by default) -->
-  <section id="letter">
-    <!-- You can write your letter here -->
-    <h2>My Letter to Elsa</h2>
-    <p>
-      Dear Elsa,<br><br>
-      This is where your heartfelt letter will go. Write anything you want here to express your feelings and love.<br><br>
-      I love you so much.<br><br>
-      Forever yours,<br>
-      [Your Name]
+    <p class="love-message">
+      My heart is beating for you, we will be together soon. I feel so lucky to be able to call myself your boyfriend, I love you so much Elsa.
     </p>
   </section>
 
@@ -222,7 +269,6 @@
   </div>
 
 <script>
-  // Countdown script stays unchanged
   function getNext28th() {
     const now = new Date();
     let year = now.getFullYear();
@@ -284,20 +330,6 @@
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
       lightboxClose.click();
-    }
-  });
-
-  // Show letter section when scrolling past gallery
-  const letter = document.getElementById('letter');
-  const gallery = document.getElementById('gallery');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    const galleryBottom = gallery.offsetTop + gallery.offsetHeight;
-    if(scrollY > galleryBottom) {
-      letter.classList.add('visible');
-    } else {
-      letter.classList.remove('visible');
     }
   });
 </script>
