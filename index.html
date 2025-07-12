@@ -25,7 +25,7 @@
     overflow: hidden;
   }
   .hero h1 {
-    font-size: 3rem;
+    font-size: 4.5rem; /* increased */
     font-weight: 700;
     opacity: 0;
     animation: fadeIn 2s forwards;
@@ -35,7 +35,7 @@
     font-style: italic;
   }
   .hero p {
-    font-size: 1.3rem;
+    font-size: 2rem; /* increased */
     margin: 0.5em 0 1em;
     opacity: 0;
     animation: fadeIn 2s 0.5s forwards;
@@ -52,24 +52,25 @@
   .time-box {
     background: rgba(255,255,255,0.85);
     border-radius: 10px;
-    padding: 1em 1.2em;
+    padding: 1.5em 2em; /* bigger padding */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transform: translateY(20px);
     animation: slideUp 1s forwards;
+    min-width: 90px;
   }
   .time-box h2 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2.8rem; /* bigger numbers */
     color: #d88bb0;
   }
   .time-box span {
     display: block;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #555;
   }
   .scroll-indicator {
     margin-top: 2em;
-    font-size: 2rem;
+    font-size: 3rem; /* bigger */
     animation: bounce 2s infinite;
     color: #d88bb0;
     cursor: pointer;
@@ -113,6 +114,53 @@
   .gallery img:hover {
     transform: scale(1.05);
   }
+
+  /* Lightbox styles */
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0; right:0; bottom:0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.5);
+  }
+  #lightbox:target {
+    display: flex;
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10000;
+  }
+
+  /* Letter section (hidden by default) */
+  #letter {
+    display: none;
+    padding: 3em 2em;
+    background: #fbe9f1;
+    color: #6a3d56;
+    max-width: 700px;
+    margin: 3em auto;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(216,139,176,0.3);
+  }
+  #letter.visible {
+    display: block;
+  }
 </style>
 </head>
 <body>
@@ -145,16 +193,36 @@
   <section id="gallery" class="gallery-section">
     <h2>Our Memories</h2>
     <div class="gallery">
-      <img src="https://www.dropbox.com/scl/fi/j9zd3vivryomwhr0ni1n7/Photo-03-07-2025-17-08-26.jpg?rlkey=92nteczbqlxd42qwi1brq5u58&raw=1" alt="Memory 1">
-      <img src="https://www.dropbox.com/scl/fi/mivvcgyu155en9djvtrqn/Photo-08-06-2025-22-17-08.jpg?rlkey=ej1k9p94ccnfqs7eue4e5o5m3&raw=1" alt="Memory 2">
-      <img src="https://www.dropbox.com/scl/fi/t51t4180kc1dib85sdjtq/Photo-08-07-2025-22-40-35.jpg?rlkey=cwewlimub55ih4p2n6plsez6n&raw=1" alt="Memory 3">
-      <img src="https://www.dropbox.com/scl/fi/f089i7g878a30kmowc29g/Photo-12-07-2025-10-16-01-2.jpg?rlkey=ht7vabyyhntzofip60pm0ke8g&raw=1" alt="Memory 4">
-      <img src="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1" alt="Memory 5">
-      <img src="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1" alt="Memory 6">
+      <img src="https://www.dropbox.com/scl/fi/j9zd3vivryomwhr0ni1n7/Photo-03-07-2025-17-08-26.jpg?rlkey=92nteczbqlxd42qwi1brq5u58&raw=1" alt="Memory 1" data-full="https://www.dropbox.com/scl/fi/j9zd3vivryomwhr0ni1n7/Photo-03-07-2025-17-08-26.jpg?rlkey=92nteczbqlxd42qwi1brq5u58&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/mivvcgyu155en9djvtrqn/Photo-08-06-2025-22-17-08.jpg?rlkey=ej1k9p94ccnfqs7eue4e5o5m3&raw=1" alt="Memory 2" data-full="https://www.dropbox.com/scl/fi/mivvcgyu155en9djvtrqn/Photo-08-06-2025-22-17-08.jpg?rlkey=ej1k9p94ccnfqs7eue4e5o5m3&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/t51t4180kc1dib85sdjtq/Photo-08-07-2025-22-40-35.jpg?rlkey=cwewlimub55ih4p2n6plsez6n&raw=1" alt="Memory 3" data-full="https://www.dropbox.com/scl/fi/t51t4180kc1dib85sdjtq/Photo-08-07-2025-22-40-35.jpg?rlkey=cwewlimub55ih4p2n6plsez6n&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/f089i7g878a30kmowc29g/Photo-12-07-2025-10-16-01-2.jpg?rlkey=ht7vabyyhntzofip60pm0ke8g&raw=1" alt="Memory 4" data-full="https://www.dropbox.com/scl/fi/f089i7g878a30kmowc29g/Photo-12-07-2025-10-16-01-2.jpg?rlkey=ht7vabyyhntzofip60pm0ke8g&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1" alt="Memory 5" data-full="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1" alt="Memory 6" data-full="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1">
     </div>
   </section>
 
+  <!-- Letter Section (hidden by default) -->
+  <section id="letter">
+    <!-- You can write your letter here -->
+    <h2>My Letter to Elsa</h2>
+    <p>
+      Dear Elsa,<br><br>
+      This is where your heartfelt letter will go. Write anything you want here to express your feelings and love.<br><br>
+      I love you so much.<br><br>
+      Forever yours,<br>
+      [Your Name]
+    </p>
+  </section>
+
+  <!-- Lightbox container -->
+  <div id="lightbox">
+    <span id="lightbox-close" title="Close">&times;</span>
+    <img src="" alt="Full Screen Image" />
+  </div>
+
 <script>
+  // Countdown script stays unchanged
   function getNext28th() {
     const now = new Date();
     let year = now.getFullYear();
@@ -192,6 +260,46 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.dataset.full || img.src;
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // prevent background scroll
+    });
+  });
+
+  lightboxClose.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    document.body.style.overflow = ''; // re-enable scroll
+  });
+
+  // Close lightbox on clicking outside image
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightboxClose.click();
+    }
+  });
+
+  // Show letter section when scrolling past gallery
+  const letter = document.getElementById('letter');
+  const gallery = document.getElementById('gallery');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const galleryBottom = gallery.offsetTop + gallery.offsetHeight;
+    if(scrollY > galleryBottom) {
+      letter.classList.add('visible');
+    } else {
+      letter.classList.remove('visible');
+    }
+  });
 </script>
 </body>
 </html>
