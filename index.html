@@ -18,80 +18,221 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     scroll-behavior: smooth;
-    background: linear-gradient(135deg, #fff0f5, #fdeff9);
+    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+    overflow-x: hidden;
   }
 
-  /* Floating Hearts Animation */
-  .heart {
+  .hearts {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .heart {
+    position: absolute;
     width: 20px;
     height: 20px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/3/33/Red_Heart.svg') no-repeat center;
-    background-size: contain;
-    opacity: 0.8;
-    pointer-events: none;
-    z-index: 9999;
-    animation: floatUp 4s linear infinite;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Love_Heart_SVG.svg/1024px-Love_Heart_SVG.svg.png') no-repeat center center / contain;
+    animation: floatHearts 10s linear infinite;
+    opacity: 0.6;
+  }
+  @keyframes floatHearts {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(360deg);
+      opacity: 0;
+    }
   }
 
-  @keyframes floatUp {
-    0% {transform: translateY(0); opacity: 1;}
-    100% {transform: translateY(-100vh); opacity: 0;}
+  .hero {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(135deg, #fddde6, #ffe9c7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 1em;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+  .hero h1 span {
+    color: #d88bb0;
+    font-style: italic;
+  }
+  .hero p {
+    font-size: 2rem;
+    margin: 0.5em 0 1em;
+    opacity: 0;
+    animation: fadeIn 2s 0.5s forwards;
+  }
+  .countdown {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 2s 1s forwards;
+  }
+  .time-box {
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 1.5em 2em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(20px);
+    animation: slideUp 1s forwards;
+    min-width: 90px;
+  }
+  .time-box h2 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #d88bb0;
+  }
+  .time-box span {
+    display: block;
+    font-size: 1.1rem;
+    color: #555;
+  }
+  .scroll-indicator {
+    margin-top: 2em;
+    font-size: 3rem;
+    animation: bounce 2s infinite;
+    color: #d88bb0;
+    cursor: pointer;
+    z-index: 2;
+  }
+  @keyframes fadeIn {
+    to {opacity: 1;}
+  }
+  @keyframes slideUp {
+    to {transform: translateY(0);}
+  }
+  @keyframes bounce {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+  }
+
+  .gallery-section {
+    background: #fff;
+    padding: 2em 1em 4em;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .gallery-section h2 {
+    margin-bottom: 1em;
+    color: #d88bb0;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0; right:0; bottom:0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.5);
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10000;
+  }
+
+  .love-message {
+    margin-top: 3em;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #c7548f;
+    background: linear-gradient(90deg, #ffd6e8, #ffe5f0);
+    padding: 1.2em 2em;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(199, 84, 143, 0.3);
+    user-select: none;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    z-index: 1;
+    position: relative;
   }
 </style>
 </head>
 <body>
-<div id="heart-container"></div>
-  <!-- Hero Countdown Section -->
-  <section class="hero">
-    <h1>To My Pretty Girl, <span>Elsa</span></h1>
-    <p>Counting down to our anniversary</p>
-    <div class="countdown">
-      <div class="time-box">
-        <h2 id="days">0</h2>
-        <span>Days</span>
-      </div>
-      <div class="time-box">
-        <h2 id="hours">0</h2>
-        <span>Hours</span>
-      </div>
-      <div class="time-box">
-        <h2 id="minutes">0</h2>
-        <span>Minutes</span>
-      </div>
-      <div class="time-box">
-        <h2 id="seconds">0</h2>
-        <span>Seconds</span>
-      </div>
-    </div>
-    <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'});">⬇️</div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="gallery-section">
-    <h2>Our Memories</h2>
-    <div class="gallery">
-      <img src="https://www.dropbox.com/scl/fi/j9zd3vivryomwhr0ni1n7/Photo-03-07-2025-17-08-26.jpg?rlkey=92nteczbqlxd42qwi1brq5u58&raw=1" alt="Memory 1" data-full="https://www.dropbox.com/scl/fi/j9zd3vivryomwhr0ni1n7/Photo-03-07-2025-17-08-26.jpg?rlkey=92nteczbqlxd42qwi1brq5u58&raw=1">
-      <img src="https://www.dropbox.com/scl/fi/mivvcgyu155en9djvtrqn/Photo-08-06-2025-22-17-08.jpg?rlkey=ej1k9p94ccnfqs7eue4e5o5m3&raw=1" alt="Memory 2" data-full="https://www.dropbox.com/scl/fi/mivvcgyu155en9djvtrqn/Photo-08-06-2025-22-17-08.jpg?rlkey=ej1k9p94ccnfqs7eue4e5o5m3&raw=1">
-      <img src="https://www.dropbox.com/scl/fi/t51t4180kc1dib85sdjtq/Photo-08-07-2025-22-40-35.jpg?rlkey=cwewlimub55ih4p2n6plsez6n&raw=1" alt="Memory 3" data-full="https://www.dropbox.com/scl/fi/t51t4180kc1dib85sdjtq/Photo-08-07-2025-22-40-35.jpg?rlkey=cwewlimub55ih4p2n6plsez6n&raw=1">
-      <img src="https://www.dropbox.com/scl/fi/f089i7g878a30kmowc29g/Photo-12-07-2025-10-16-01-2.jpg?rlkey=ht7vabyyhntzofip60pm0ke8g&raw=1" alt="Memory 4" data-full="https://www.dropbox.com/scl/fi/f089i7g878a30kmowc29g/Photo-12-07-2025-10-16-01-2.jpg?rlkey=ht7vabyyhntzofip60pm0ke8g&raw=1">
-      <img src="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1" alt="Memory 5" data-full="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1">
-      <img src="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1" alt="Memory 6" data-full="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1">
-      <img src="https://www.dropbox.com/scl/fi/5afitfaihdl75lh2zikb5/Photo-12-07-2025-10-33-16.jpg?rlkey=80lvu67cmrdipcncn9isqj2pd&raw=1" alt="Photo 1" />
-      <img src="https://www.dropbox.com/scl/fi/g9cxlz7r59t6y0xyt0uvs/Photo-12-07-2025-11-21-30.jpg?rlkey=y10nkvnbcenagr09b4av3pwm2&raw=1" alt="Photo" />
-      <img src="https://www.dropbox.com/scl/fi/e86dx2gu7sf8l8586dkk0/Photo-07-07-2025-14-36-53.jpg?rlkey=ij3ac81430kromyqo48ojw8wh&raw=1" alt="Photo" />
-    </div>
-    <p class="love-message">
-      My heart is beating for you, we will be together soon. I feel so lucky to be able to call myself your boyfriend, I love you so much Elsa.
-    </p>
-  </section>
-
-  <!-- Lightbox container -->
-  <div id="lightbox">
-    <span id="lightbox-close" title="Close">&times;</span>
-    <img src="" alt="Full Screen Image" />
+<div class="hearts"></div>
+<section class="hero">
+  <h1>To My Pretty Girl, <span>Elsa</span></h1>
+  <p>Counting down to our anniversary</p>
+  <div class="countdown">
+    <div class="time-box"><h2 id="days">0</h2><span>Days</span></div>
+    <div class="time-box"><h2 id="hours">0</h2><span>Hours</span></div>
+    <div class="time-box"><h2 id="minutes">0</h2><span>Minutes</span></div>
+    <div class="time-box"><h2 id="seconds">0</h2><span>Seconds</span></div>
   </div>
-
+  <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'});">⬇️</div>
+</section>
+<section id="gallery" class="gallery-section">
+  <h2>Our Memories</h2>
+  <div class="gallery">
+    <!-- your images as before -->
+  </div>
+  <p class="love-message">
+    My heart is beating for you, we will be together soon. I feel so lucky to be able to call myself your boyfriend, I love you so much Elsa.
+  </p>
+</section>
+<div id="lightbox"><span id="lightbox-close">&times;</span><img src="" alt="Full Screen Image" /></div>
 <script>
   function getNext28th() {
     const now = new Date();
@@ -106,76 +247,56 @@
     }
     return new Date(year, month, 28, 0, 0, 0);
   }
-
   let targetDate = getNext28th().getTime();
-
   function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
-
-    if (distance < 0) {
-      targetDate = getNext28th().getTime();
-    }
-
+    if (distance < 0) targetDate = getNext28th().getTime();
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
     document.getElementById("days").textContent = days >= 0 ? days : 0;
     document.getElementById("hours").textContent = hours >= 0 ? hours : 0;
     document.getElementById("minutes").textContent = minutes >= 0 ? minutes : 0;
     document.getElementById("seconds").textContent = seconds >= 0 ? seconds : 0;
   }
-
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Lightbox functionality
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
   const lightboxClose = document.getElementById('lightbox-close');
-
   document.querySelectorAll('.gallery img').forEach(img => {
     img.addEventListener('click', () => {
       lightboxImg.src = img.dataset.full || img.src;
       lightbox.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // prevent background scroll
+      document.body.style.overflow = 'hidden';
     });
   });
-
   lightboxClose.addEventListener('click', () => {
     lightbox.style.display = 'none';
     lightboxImg.src = '';
-    document.body.style.overflow = ''; // re-enable scroll
+    document.body.style.overflow = '';
   });
-
-  // Close lightbox on clicking outside image
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightboxClose.click();
-    }
+    if (e.target === lightbox) lightboxClose.click();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.style.display === 'flex') lightboxClose.click();
   });
 
-  // Close lightbox with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-      lightboxClose.click();
-    }
-  });
-</script>
-<script>
-function spawnHeart() {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = 3 + Math.random() * 2 + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
-}
-setInterval(spawnHeart, 500);
+  // Floating hearts generation
+  const heartsContainer = document.querySelector('.hearts');
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }
+  setInterval(createHeart, 500);
 </script>
 </body>
 </html>
-
-
