@@ -22,6 +22,7 @@
     overflow-x: hidden;
   }
 
+  /* Floating hearts container */
   .hearts {
     position: fixed;
     top: 0;
@@ -63,7 +64,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    overflow: hidden;
     padding: 0 1em;
     z-index: 1;
   }
@@ -205,13 +205,13 @@
     line-height: 1.6;
     letter-spacing: 0.03em;
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-    z-index: 1;
-    position: relative;
   }
 </style>
 </head>
 <body>
 <div class="hearts"></div>
+
+<!-- Hero Countdown Section -->
 <section class="hero">
   <h1>To My Pretty Girl, <span>Elsa</span></h1>
   <p>Counting down to our anniversary</p>
@@ -223,16 +223,28 @@
   </div>
   <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'});">⬇️</div>
 </section>
+
+<!-- Gallery Section -->
 <section id="gallery" class="gallery-section">
   <h2>Our Memories</h2>
   <div class="gallery">
-    <!-- your images as before -->
+    <img src="https://www.dropbox.com/scl/fi/j9zd3vivryomwhr0ni1n7/Photo-03-07-2025-17-08-26.jpg?rlkey=92nteczbqlxd42qwi1brq5u58&raw=1" alt="Memory 1">
+    <img src="https://www.dropbox.com/scl/fi/mivvcgyu155en9djvtrqn/Photo-08-06-2025-22-17-08.jpg?rlkey=ej1k9p94ccnfqs7eue4e5o5m3&raw=1" alt="Memory 2">
+    <img src="https://www.dropbox.com/scl/fi/t51t4180kc1dib85sdjtq/Photo-08-07-2025-22-40-35.jpg?rlkey=cwewlimub55ih4p2n6plsez6n&raw=1" alt="Memory 3">
+    <img src="https://www.dropbox.com/scl/fi/f089i7g878a30kmowc29g/Photo-12-07-2025-10-16-01-2.jpg?rlkey=ht7vabyyhntzofip60pm0ke8g&raw=1" alt="Memory 4">
+    <img src="https://www.dropbox.com/scl/fi/qkskslf65jocny3g0oz5f/Photo-12-07-2025-10-16-01.jpg?rlkey=8e3ejgy0yue0252xbb1gwhnjs&raw=1" alt="Memory 5">
+    <img src="https://www.dropbox.com/scl/fi/dvcdw0qtoyfaov3dfyvk5/Photo-16-06-2025-07-52-46.jpg?rlkey=j43wea3zy3syiguqqoeocjqsc&raw=1" alt="Memory 6">
+    <img src="https://www.dropbox.com/scl/fi/5afitfaihdl75lh2zikb5/Photo-12-07-2025-10-33-16.jpg?rlkey=80lvu67cmrdipcncn9isqj2pd&raw=1" alt="Memory 7">
+    <img src="https://www.dropbox.com/scl/fi/g9cxlz7r59t6y0xyt0uvs/Photo-12-07-2025-11-21-30.jpg?rlkey=y10nkvnbcenagr09b4av3pwm2&raw=1" alt="Memory 8">
+    <img src="https://www.dropbox.com/scl/fi/e86dx2gu7sf8l8586dkk0/Photo-07-07-2025-14-36-53.jpg?rlkey=ij3ac81430kromyqo48ojw8wh&raw=1" alt="Memory 9">
   </div>
   <p class="love-message">
     My heart is beating for you, we will be together soon. I feel so lucky to be able to call myself your boyfriend, I love you so much Elsa.
   </p>
 </section>
+
 <div id="lightbox"><span id="lightbox-close">&times;</span><img src="" alt="Full Screen Image" /></div>
+
 <script>
   function getNext28th() {
     const now = new Date();
@@ -264,6 +276,7 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
+  // Lightbox functionality
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
   const lightboxClose = document.getElementById('lightbox-close');
@@ -286,7 +299,7 @@
     if (e.key === 'Escape' && lightbox.style.display === 'flex') lightboxClose.click();
   });
 
-  // Floating hearts generation
+  // Floating hearts generator
   const heartsContainer = document.querySelector('.hearts');
   function createHeart() {
     const heart = document.createElement('div');
