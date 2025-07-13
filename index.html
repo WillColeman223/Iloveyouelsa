@@ -18,214 +18,30 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     scroll-behavior: smooth;
-    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
-  }
-  /* Fullscreen Countdown Section */
-  .hero {
-    position: relative;
-    height: 100vh;
-    background: linear-gradient(135deg, #fddde6, #ffe9c7);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    padding: 0 1em;
-  }
-  .hero h1 {
-    font-size: 4.5rem;
-    font-weight: 700;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-  }
-  .hero h1 span {
-    color: #d88bb0;
-    font-style: italic;
-  }
-  .hero p {
-    font-size: 2rem;
-    margin: 0.5em 0 1em;
-    opacity: 0;
-    animation: fadeIn 2s 0.5s forwards;
-  }
-  .countdown {
-    display: flex;
-    gap: 1em;
-    margin-bottom: 2em;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeIn 2s 1s forwards;
-  }
-  .time-box {
-    background: rgba(255,255,255,0.85);
-    border-radius: 10px;
-    padding: 1.5em 2em;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transform: translateY(20px);
-    animation: slideUp 1s forwards;
-    min-width: 90px;
-  }
-  .time-box h2 {
-    margin: 0;
-    font-size: 2.8rem;
-    color: #d88bb0;
-  }
-  .time-box span {
-    display: block;
-    font-size: 1.1rem;
-    color: #555;
-  }
-  .scroll-indicator {
-    margin-top: 2em;
-    font-size: 3rem;
-    animation: bounce 2s infinite;
-    color: #d88bb0;
-    cursor: pointer;
-  }
-  @keyframes fadeIn {
-    to {opacity: 1;}
-  }
-  @keyframes slideUp {
-    to {transform: translateY(0);}
-  }
-  @keyframes bounce {
-    0%, 100% {transform: translateY(0);}
-    50% {transform: translateY(-10px);}
+    background: linear-gradient(135deg, #fff0f5, #fdeff9);
   }
 
-  /* Gallery Section */
-  .gallery-section {
-    background: #fff;
-    padding: 2em 1em 4em;
-    text-align: center;
-  }
-  .gallery-section h2 {
-    margin-bottom: 1em;
-    color: #d88bb0;
-    font-weight: 700;
-    font-size: 2.4rem;
-    letter-spacing: 1px;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1em;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .gallery img {
-    width: 100%;
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-
-  /* Lightbox styles */
-  #lightbox {
+  /* Floating Hearts Animation */
+  .heart {
     position: fixed;
-    top: 0; left: 0; right:0; bottom:0;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
+    width: 20px;
+    height: 20px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/3/33/Red_Heart.svg') no-repeat center;
+    background-size: contain;
+    opacity: 0.8;
+    pointer-events: none;
     z-index: 9999;
-  }
-  #lightbox img {
-    max-width: 90vw;
-    max-height: 90vh;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.5);
-  }
-  #lightbox-close {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    font-size: 3rem;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    z-index: 10000;
+    animation: floatUp 4s linear infinite;
   }
 
-  /* Romantic message styling */
-  .love-message {
-    margin-top: 3em;
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #c7548f;
-    background: linear-gradient(90deg, #ffd6e8, #ffe5f0);
-    padding: 1.2em 2em;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(199, 84, 143, 0.3);
-    user-select: none;
-    line-height: 1.6;
-    letter-spacing: 0.03em;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-  }
-
-  @media (max-width: 600px) {
-    .hero {
-      padding: 1.5em 1em;
-      height: auto;
-      min-height: 100vh;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-    }
-
-    .countdown {
-      flex-direction: column;
-      gap: 0.8em;
-    }
-
-    .time-box {
-      min-width: 100%;
-      padding: 1em;
-    }
-
-    .time-box h2 {
-      font-size: 2.4rem;
-    }
-
-    .scroll-indicator {
-      font-size: 2.2rem;
-    }
-
-    .gallery {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.7em;
-      padding: 0 0.5em;
-    }
-
-    #lightbox img {
-      max-width: 95vw;
-      max-height: 80vh;
-    }
-
-    .love-message {
-      font-size: 1.4rem;
-      padding: 1em 1.2em;
-      margin-top: 2em;
-    }
+  @keyframes floatUp {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-100vh); opacity: 0;}
   }
 </style>
 </head>
 <body>
+<div id="heart-container"></div>
   <!-- Hero Countdown Section -->
   <section class="hero">
     <h1>To My Pretty Girl, <span>Elsa</span></h1>
@@ -348,6 +164,18 @@
     }
   });
 </script>
+<script>
+function spawnHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+setInterval(spawnHeart, 500);
+</script>
 </body>
 </html>
+
 
